@@ -2,7 +2,7 @@
 
 namespace CleanCodeLabs.Codelab02
 {
-    public class ResourceAllocator
+    public class ResourceAllocator 
     {
         public enum SlotCategory
         {
@@ -10,74 +10,54 @@ namespace CleanCodeLabs.Codelab02
             SpaceSlot
         }
 
-        private static readonly int INVALID_RESOURCE_ID = -1;
+
+
+        ISlotCategory slotCategory;
 
         public int Allocate(SlotCategory slotCategory)
         {
-            int resourceId;
-            switch (slotCategory)
-            {
-                case SlotCategory.TimeSlot:
-                    resourceId = FindFreeTimeSlot();
-                    MarkTimeSlotBusy(resourceId);
-                    break;
-                case SlotCategory.SpaceSlot:
-                    resourceId = FindFreeSpaceSlot();
-                    MarkSpaceSlotBusy(resourceId);
-                    break;
-                default:
-                    Console.WriteLine("ERROR: Attempted to allocate invalid resource");
-                    resourceId = INVALID_RESOURCE_ID;
-                    break;
-            }
-
+            this.slotCategory = SlotCategoryFactory.GetSlotCategory(slotCategory);
+            int resourceId = this.slotCategory.resourceId;
+            this.slotCategory.MarkBusy();
             return resourceId;
+
         }
 
         public void Deallocate(SlotCategory slotCategory, int resourceId)
         {
-            switch (slotCategory)
-            {
-                case SlotCategory.TimeSlot:
-                    MarkTimeSlotFree(resourceId);
-                    break;
-                case SlotCategory.SpaceSlot:
-                    MarkSpaceSlotFree(resourceId);
-                    break;
-                default:
-                    Console.WriteLine("ERROR: attempted to free invalid resource");
-                    break;
-            }
+            this.slotCategory = SlotCategoryFactory.GetSlotCategory(slotCategory);
+            this.slotCategory.resourceId = resourceId;
+            this.slotCategory.MarkFree();
         }
 
-        private void MarkSpaceSlotFree(int resourceId)
-        {
-            Console.WriteLine("Space slot Marked as free for resourceId = " + resourceId);
-        }
+        //private void MarkSpaceSlotFree(int resourceId)
+        //{
+        //    Console.WriteLine("Space slot Marked as free for resourceId = " + resourceId);
+        //}
 
-        private void MarkTimeSlotFree(int resourceId)
-        {
-            Console.WriteLine("Time slot Marked as free for resourceId = " + resourceId);
-        }
+        //private void MarkTimeSlotFree(int resourceId)
+        //{
+        //    Console.WriteLine("Time slot Marked as free for resourceId = " + resourceId);
+        //}
 
-        private void MarkSpaceSlotBusy(int resourceId)
-        {
-            Console.WriteLine("Space slot Marked as busy for resourceId = " + resourceId);
-        }
+        //private void MarkSpaceSlotBusy(int resourceId)
+        //{
+        //    Console.WriteLine("Space slot Marked as busy for resourceId = " + resourceId);
+        //}
 
-        private int FindFreeSpaceSlot()
-        {
-            return new Random().Next() * 100;
-        }
+        //private int FindFreeSpaceSlot()
+        //{
+        //    return new Random().Next() * 100;
+        //}
 
-        private void MarkTimeSlotBusy(int resourceId)
-        {
-            Console.WriteLine("Time slot Marked as busy for resourceId = " + resourceId);
-        }
+        //private void MarkTimeSlotBusy(int resourceId)
+        //{
+        //    Console.WriteLine("Time slot Marked as busy for resourceId = " + resourceId);
+        //}
 
-        private int FindFreeTimeSlot()
-        {
-            return new Random().Next() * 50;
-        }
+        //private int FindFreeTimeSlot()
+        //{
+        //    return new Random().Next() * 50;
+        //}
     }
 }

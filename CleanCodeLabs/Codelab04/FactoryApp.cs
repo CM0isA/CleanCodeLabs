@@ -10,10 +10,10 @@ namespace CleanCodeLabs.Codelab04
             {
                 new Human("Joe"),
                 new Horse("Jack"),
-                new Robot("Robo")
             };
+            var automatedWorkers = new AutomatedWorker[] { new Robot("Robot") } ;
 
-            var factoryHall = new FactoryHall(workers);
+            var factoryHall = new FactoryHall(workers, automatedWorkers);
             factoryHall.StartWorking();
         }
     }

@@ -28,17 +28,22 @@ namespace CleanCodeLabs.Codelab01
 
         public string GetCarsNames()
         {
-            var sb = new StringBuilder();
+            string carNames = "";
             foreach (var car in _carsDb)
             {
-                sb.Append(car.Brand);
-                sb.Append(" ");
-                sb.Append(car.Model);
-                sb.Append(", ");
+                carNames += FormatCarNames(car);
             }
-
-            var carNames = sb.ToString();
             return carNames.Substring(0, carNames.Length - 2);
+        }
+
+        private string FormatCarNames(Car car)
+        {
+            var sb = new StringBuilder();
+            sb.Append(car.Brand);
+            sb.Append(" ");
+            sb.Append(car.Model);
+            sb.Append(", ");
+            return sb.ToString();
         }
 
         public Car GetBestCar()

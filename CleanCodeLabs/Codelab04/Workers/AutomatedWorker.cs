@@ -1,8 +1,8 @@
 ﻿namespace CleanCodeLabs.Codelab04.Workers
 {
-    public abstract class Worker
+    public abstract class AutomatedWorker
     {
-        protected Worker(string name)
+        protected AutomatedWorker(string name)
         {
             Name = name;
         }
@@ -11,6 +11,6 @@
 
         public abstract string Work();
 
-        public abstract string Eat();
+        public abstract string RechargeBatteries();
     }
 }

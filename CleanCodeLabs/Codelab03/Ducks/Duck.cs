@@ -2,7 +2,7 @@
 
 namespace CleanCodeLabs.Codelab03.Ducks
 {
-    public class Duck
+    public class Duck : IDuck
     {
         public virtual void Quack()
         {

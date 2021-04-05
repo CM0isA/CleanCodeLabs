@@ -13,11 +13,6 @@ namespace CleanCodeLabs.Codelab04.Workers
             return "Eating some jummy hay!";
         }
 
-        public override string RechargeBatteries()
-        {
-            throw new NotImplementedException("Animals don't have batteries to reload...");
-        }
-
         public override string Work()
         {
             return "Working like a true working horse";

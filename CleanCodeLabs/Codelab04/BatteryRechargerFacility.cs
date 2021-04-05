@@ -1,19 +1,16 @@
 ﻿using System;
 using CleanCodeLabs.Codelab04.Workers;
+using CleanCodeLabs.Codelab04;
 
 namespace CleanCodeLabs.Codelab04
 {
     internal class BatteryRechargerFacility
     {
-        public static void RechargeBatteriesOf(Worker[] rechargers)
+        public static void RechargeBatteriesOf(AutomatedWorker[] rechargers)
         {
             foreach (var recharger in rechargers)
             {
-                // A required check because of our bad design :'(
-                if (recharger.GetType() == typeof(Robot))
-                {
-                    Console.WriteLine(recharger.RechargeBatteries());
-                }
+                Console.WriteLine(recharger.RechargeBatteries());
             }
         }
     }

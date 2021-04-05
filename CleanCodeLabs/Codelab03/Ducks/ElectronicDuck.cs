@@ -2,19 +2,21 @@
 
 namespace CleanCodeLabs.Codelab03.Ducks
 {
-    public class ElectronicDuck : Duck
+    public class ElectronicDuck : IElectronicDuck
     {
         private bool _isSwitchedOn;
 
-        public override void Quack()
+        public void Quack()
         {
-            if (_isSwitchedOn)
+            if (!_isSwitchedOn)
             {
-                Console.WriteLine("Quack Quack... (in a robot voice)");
+                TurnOn();
             }
+
+            Console.WriteLine("Quack Quack... (in a robot voice)");
         }
 
-        public override void Swim()
+        public void Swim()
         {
             throw new NotImplementedException("Eletronic ducks can't swim, they'll break in water!");
         }
